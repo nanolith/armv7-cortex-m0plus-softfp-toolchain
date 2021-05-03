@@ -50,8 +50,8 @@ get_pubkey_if_missing()
     if gpg -k $1 > /dev/null 2>&1; then
         echo Public Key $1 found.
     else
-        echo Fetching public key $1 from $2.
-        if gpg --keyserver $2 --recv-keys $1; then
+        echo Fetching public key $1.
+        if gpg --recv-keys $1; then
             echo "    Success."
         else
             echo "    Failure."
@@ -289,31 +289,31 @@ NEWLIB_VERSION=newlib-4.1.0
 GDB_VERSION=gdb-10.2
 
 #get GMP
-get_pubkey_if_missing 28C67298 pgp.mit.edu
+get_pubkey_if_missing 28C67298
 download_if_missing https://gmplib.org/download/gmp/${GMP_VERSION}.tar.xz.sig
 download_if_missing https://gmplib.org/download/gmp/${GMP_VERSION}.tar.xz
 verify_signature ${GMP_VERSION}.tar.xz.sig ${GMP_VERSION}.tar.xz
 
 #get MPFR
-get_pubkey_if_missing 980C197698C3739D pgp.mit.edu
+get_pubkey_if_missing 980C197698C3739D
 download_if_missing http://www.mpfr.org/mpfr-current/${MPFR_VERSION}.tar.xz.asc
 download_if_missing http://www.mpfr.org/mpfr-current/${MPFR_VERSION}.tar.xz
 verify_signature ${MPFR_VERSION}.tar.xz.asc ${MPFR_VERSION}.tar.xz
 
 #get MPC
-get_pubkey_if_missing F7D5C9BF765C61E3 pgp.mit.edu
+get_pubkey_if_missing F7D5C9BF765C61E3
 download_if_missing ftp://ftp.gnu.org/gnu/mpc/${MPC_VERSION}.tar.gz.sig
 download_if_missing ftp://ftp.gnu.org/gnu/mpc/${MPC_VERSION}.tar.gz
 verify_signature ${MPC_VERSION}.tar.gz.sig ${MPC_VERSION}.tar.gz
 
 #get binutils
-get_pubkey_if_missing DD9E3C4F pgp.mit.edu
+get_pubkey_if_missing DD9E3C4F
 download_if_missing https://ftp.gnu.org/gnu/binutils/${BINUTILS_VERSION}.tar.gz.sig
 download_if_missing https://ftp.gnu.org/gnu/binutils/${BINUTILS_VERSION}.tar.gz
 verify_signature ${BINUTILS_VERSION}.tar.gz.sig ${BINUTILS_VERSION}.tar.gz
 
 #get gcc
-get_pubkey_if_missing 09B5FA62 pgp.mit.edu
+get_pubkey_if_missing 09B5FA62
 download_if_missing https://ftp.gnu.org/gnu/gcc/${GCC_VERSION}/${GCC_VERSION}.tar.xz.sig
 download_if_missing https://ftp.gnu.org/gnu/gcc/${GCC_VERSION}/${GCC_VERSION}.tar.xz
 verify_signature ${GCC_VERSION}.tar.xz.sig ${GCC_VERSION}.tar.xz
@@ -323,7 +323,7 @@ download_if_missing ftp://sourceware.org/pub/newlib/${NEWLIB_VERSION}.tar.gz
 verify_sha512 6a24b64bb8136e4cd9d21b8720a36f87a34397fd952520af66903e183455c5cf19bb0ee4607c12a05d139c6c59382263383cb62c461a839f969d23d3bc4b1d34 ${NEWLIB_VERSION}.tar.gz
 
 #get gdb
-get_pubkey_if_missing FF325CF3 pgp.mit.edu
+get_pubkey_if_missing FF325CF3
 download_if_missing https://ftp.gnu.org/gnu/gdb/${GDB_VERSION}.tar.xz.sig
 download_if_missing https://ftp.gnu.org/gnu/gdb/${GDB_VERSION}.tar.xz
 verify_signature ${GDB_VERSION}.tar.xz.sig ${GDB_VERSION}.tar.xz
