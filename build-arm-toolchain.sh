@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+#allow MAKE to be overridden
+if [ "" == "$MAKE" ]; then
+    MAKE=make
+fi
+
 #check that a directory exists
 check_directory_exists()
 {
@@ -168,7 +173,7 @@ build_once()
             pushd $workspace
         fi
 
-        if make $MAKE_OPTS $buildtarget; then
+        if $MAKE $MAKE_OPTS $buildtarget; then
             #restore directory
             popd
             touch $tag
@@ -199,7 +204,7 @@ test_once()
             pushd $workspace
         fi
 
-        if make $MAKE_OPTS $testcmd; then
+        if $MAKE $MAKE_OPTS $testcmd; then
             #restore directory
             popd
             touch $tag
@@ -235,7 +240,7 @@ install_once()
             local installtarget=install
         fi
 
-        if make $installtarget; then
+        if $MAKE $installtarget; then
             #restore directory
             popd
             touch $tag
