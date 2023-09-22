@@ -280,53 +280,41 @@ else
     TAR=tar
 fi
 
-GMP_VERSION=gmp-6.2.1
-MPFR_VERSION=mpfr-4.1.0
-MPC_VERSION=mpc-1.2.1
-BINUTILS_VERSION=binutils-2.36.1
-GCC_VERSION=gcc-11.1.0
-NEWLIB_VERSION=newlib-4.1.0
-GDB_VERSION=gdb-10.2
+GMP_VERSION=gmp-6.3.0
+MPFR_VERSION=mpfr-4.2.1
+MPC_VERSION=mpc-1.3.1
+BINUTILS_VERSION=binutils-2.41
+GCC_VERSION=gcc-13.2.0
+NEWLIB_VERSION=newlib-4.3.0.20230120
+GDB_VERSION=gdb-13.2
 
 #get GMP
-get_pubkey_if_missing 28C67298
-download_if_missing https://gmplib.org/download/gmp/${GMP_VERSION}.tar.xz.sig
 download_if_missing https://gmplib.org/download/gmp/${GMP_VERSION}.tar.xz
-verify_signature ${GMP_VERSION}.tar.xz.sig ${GMP_VERSION}.tar.xz
+verify_sha512 e85a0dab5195889948a3462189f0e0598d331d3457612e2d3350799dba2e244316d256f8161df5219538eb003e4b5343f989aaa00f96321559063ed8c8f29fd2 ${GMP_VERSION}.tar.xz
 
 #get MPFR
-get_pubkey_if_missing 980C197698C3739D
-download_if_missing http://www.mpfr.org/mpfr-current/${MPFR_VERSION}.tar.xz.asc
 download_if_missing http://www.mpfr.org/mpfr-current/${MPFR_VERSION}.tar.xz
-verify_signature ${MPFR_VERSION}.tar.xz.asc ${MPFR_VERSION}.tar.xz
+verify_sha512 bc68c0d755d5446403644833ecbb07e37360beca45f474297b5d5c40926df1efc3e2067eecffdf253f946288bcca39ca89b0613f545d46a9e767d1d4cf358475 ${MPFR_VERSION}.tar.xz
 
 #get MPC
-get_pubkey_if_missing F7D5C9BF765C61E3
-download_if_missing ftp://ftp.gnu.org/gnu/mpc/${MPC_VERSION}.tar.gz.sig
 download_if_missing ftp://ftp.gnu.org/gnu/mpc/${MPC_VERSION}.tar.gz
-verify_signature ${MPC_VERSION}.tar.gz.sig ${MPC_VERSION}.tar.gz
+verify_sha512 4bab4ef6076f8c5dfdc99d810b51108ced61ea2942ba0c1c932d624360a5473df20d32b300fc76f2ba4aa2a97e1f275c9fd494a1ba9f07c4cb2ad7ceaeb1ae97 ${MPC_VERSION}.tar.gz
 
 #get binutils
-get_pubkey_if_missing DD9E3C4F
-download_if_missing https://ftp.gnu.org/gnu/binutils/${BINUTILS_VERSION}.tar.gz.sig
 download_if_missing https://ftp.gnu.org/gnu/binutils/${BINUTILS_VERSION}.tar.gz
-verify_signature ${BINUTILS_VERSION}.tar.gz.sig ${BINUTILS_VERSION}.tar.gz
+verify_sha512 4c6d90deba4514b06cf2558e3bd695ec80844daee8666b5398a8b6c51f49b4287a7791d0524d9a97be2040e0a0f80c7edb071afd295ef8aa181aa61da6cd595e ${BINUTILS_VERSION}.tar.gz
 
 #get gcc
-get_pubkey_if_missing 09B5FA62
-download_if_missing https://ftp.gnu.org/gnu/gcc/${GCC_VERSION}/${GCC_VERSION}.tar.xz.sig
 download_if_missing https://ftp.gnu.org/gnu/gcc/${GCC_VERSION}/${GCC_VERSION}.tar.xz
-verify_signature ${GCC_VERSION}.tar.xz.sig ${GCC_VERSION}.tar.xz
+verify_sha512 d99e4826a70db04504467e349e9fbaedaa5870766cda7c5cab50cdebedc4be755ebca5b789e1232a34a20be1a0b60097de9280efe47bdb71c73251e30b0862a2 ${GCC_VERSION}.tar.xz
 
 #get newlib
 download_if_missing ftp://sourceware.org/pub/newlib/${NEWLIB_VERSION}.tar.gz
-verify_sha512 6a24b64bb8136e4cd9d21b8720a36f87a34397fd952520af66903e183455c5cf19bb0ee4607c12a05d139c6c59382263383cb62c461a839f969d23d3bc4b1d34 ${NEWLIB_VERSION}.tar.gz
+verify_sha512 4a06309d36c2255fef8fc8f2d133cafa850f1ed2eddfb27b5d45f5d16af69e0fca829a0b4c9b34af4ed3a28c6fcc929761e0ee823a4229f35c2853d432b5e7ef ${NEWLIB_VERSION}.tar.gz
 
 #get gdb
-get_pubkey_if_missing FF325CF3
-download_if_missing https://ftp.gnu.org/gnu/gdb/${GDB_VERSION}.tar.xz.sig
 download_if_missing https://ftp.gnu.org/gnu/gdb/${GDB_VERSION}.tar.xz
-verify_signature ${GDB_VERSION}.tar.xz.sig ${GDB_VERSION}.tar.xz
+verify_sha512 8185d3e11ab60dafff5860a5016577bfe7dd7547ef01ebc867bc247603d82b74ff74c4f29492c7d2aee57076f52be33e289f4c6b414a4b870d4b3004909f4c34 ${GDB_VERSION}.tar.xz
 
 #extract and build GMP
 extract_once gmp J ${GMP_VERSION}.tar.xz
